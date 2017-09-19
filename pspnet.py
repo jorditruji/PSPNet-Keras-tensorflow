@@ -19,6 +19,8 @@ import layers_builder as layers
 import utils
 import matplotlib.pyplot as plt
 
+os.environ["CUDA_DEVICE_ORDER"] = "0"   # see issue #152
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 __author__ = "Vlad Kryvoruchko, Chaoyue Wang, Jeffrey Hu & Julian Tatsch"
 
 
