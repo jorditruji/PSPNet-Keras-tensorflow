@@ -18,7 +18,7 @@ import tensorflow as tf
 import layers_builder as layers
 import utils
 import matplotlib.pyplot as plt
-
+import os
 os.environ["CUDA_DEVICE_ORDER"] = "0"   # see issue #152
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 __author__ = "Vlad Kryvoruchko, Chaoyue Wang, Jeffrey Hu & Julian Tatsch"
@@ -290,6 +290,6 @@ if __name__ == "__main__":
         # colored_class_image is [0.0-1.0] img is [0-255]
         alpha_blended = 0.5 * colored_class_image + 0.5 * img
         filename, ext = splitext(args.output_path)
-        misc.imsave(filename + "_seg" + ext, colored_class_image)
-        misc.imsave(filename + "_probs" + ext, pm)
-        misc.imsave(filename + "_seg_blended" + ext, alpha_blended)
+        misc.imsave(filename + "_seg_Test" + ext, colored_class_image)
+        misc.imsave(filename + "_probs_Test" + ext, pm)
+        misc.imsave(filename + "_seg_blended_test" + ext, alpha_blended)
