@@ -19,8 +19,7 @@ from pspnet import PSPNet50
 from data_load import *
 
 def resize_like(input_tensor): # resizes input tensor wrt. ref_tensor
-    H, W = 640, 480
-    return tf.image.resize_nearest_neighbor(inputs, [H.value, W.value])
+    return tf.image.resize_nearest_neighbor(inputs, [480, 640])
 
 
 
