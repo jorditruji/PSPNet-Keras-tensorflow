@@ -11,6 +11,28 @@ from scipy import misc, ndimage, io
 
 DATA_MEAN = np.array([[[126.92261499, 114.11585906, 99.15394194]]])  # RGB order
 
+
+def printProgressBar(iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '|'):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iteration   - Required  : current iteration (Int)
+        total       - Required  : total iterations (Int)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+        decimals    - Optional  : positive number of decimals in percent complete (Int)
+        length      - Optional  : character length of bar (Int)
+        fill        - Optional  : bar fill character (Str)
+    """
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filledLength = int(length * iteration // total)
+    bar = fill * filledLength + '-' * (length - filledLength)
+    print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix), end = '\r')
+    # Print New Line on Complete
+    if iteration == total:
+        print()
+
+
 def read_image(name):
 	img=misc.imread(name)
 	img_Resize= misc.imresize(img, (640, 480))
@@ -20,7 +42,7 @@ def read_image(name):
 def read_label(name):
 	label=io.loadmat(name)[name[:-4]]
 	label=np.transpose(label.astype('uint8'))
-	print (label.shape)
+	#print (label.shape)
 	return label
 
 
@@ -29,10 +51,13 @@ def load_data(path,num_img):
 	images =[]
 	labels=[]
 	cont=0
+	i=0
 	with open(filename) as f:
 		head = list(islice(f, num_img))
 		for line in head:
-			print (line)
+			printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
+            i += 1
+			#print (line)
 			if cont<num_img:
 				prova =line.strip().split(' ')
 				img=read_image(prova[0])
