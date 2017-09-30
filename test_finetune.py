@@ -31,7 +31,7 @@ pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
 pspnet_ini.model.summary(line_length=150)
 pspnet_ini.model.layers.pop()
 layer_lambda = pspnet_ini.model.layers.pop()
-
+print (layer_lambda)
 
 kernel_size=(1,1)
 new_layer=Conv2D(16, (1, 1), strides=(1, 1), padding='valid', data_format='channels_last', dilation_rate=(1, 1), activation='linear', use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)(pspnet_ini.model.layers[-1].output)
@@ -54,7 +54,7 @@ out =Dense(16, activation='softmax', name='my_dense')(new_layer)
 inp = pspnet_ini.model.input
 model2 = Model(inp, out)
 
-model2.summary(line_length=150)
+#model2.summary(line_length=150)
 
 
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
