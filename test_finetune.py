@@ -28,7 +28,7 @@ def resize_like(input_tensor, ref_tensor): # resizes input tensor wrt. ref_tenso
 pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
                               weights='pspnet50_ade20k')
 
-pspnet_ini.model.summary(line_length=150)
+#pspnet_ini.model.summary(line_length=150)
 pspnet_ini.model.layers.pop()
 layer_lambda = pspnet_ini.model.layers.pop()
 print (layer_lambda)
