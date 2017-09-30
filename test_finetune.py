@@ -43,6 +43,9 @@ x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 10
 print (np.squeeze(x_train).shape)
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
+
+y_train.reshape(y_train.shape + (1,))
+y_test.reshape(y_test.shape + (1,))
 print (y_train.shape)
 
 
