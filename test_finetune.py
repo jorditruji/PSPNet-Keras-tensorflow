@@ -28,7 +28,13 @@ pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
-kernel_size=[1,1]
+
+with open('end_net.json', 'r') as file_handle:
+     model_end = model_from_json(file_handle.read())
+
+inp = pspnet_ini.model.input
+
+'''
 new_layer=Conv2D(16, kernel_size, strides=(1, 1))(pspnet_ini.model.layers[-1].output)
 #{"name": "conv6", "config": {"filters": 16, "use_bias": true, "name": "conv6", "bias_regularizer": null, "strides": [1, 1], "data_format": "channels_last", "activation": "linear", "trainable": true, "kernel_constraint": null, "activity_regularizer": null, "padding": "valid", "bias_initializer": {"config": {}, "class_name": "Zeros"}, "kernel_initializer": {"config": {"seed": null, "distribution": "uniform", "scale": 1.0, "mode": "fan_avg"}, "class_name": "VarianceScaling"}, "bias_constraint": null, "kernel_size": [1, 1], "kernel_regularizer": null, "dilation_rate": [1, 1]}, "class_name": "Conv2D"
 last_layer = pspnet_ini.model.layers[-1].output
@@ -40,9 +46,10 @@ out =Dense(16, activation='softmax', name='my_dense')(new_layer)
 
 inp = pspnet_ini.model.input
 #out = new_layer(pspnet_ini.model.layers[-1].output)
+'''
+model2 = Model(inp, model_end)
 
-model2 = Model(inp, out)
-
+model2.summary(line_length=150)
 
 
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
@@ -67,7 +74,6 @@ for layer in model2.layers[:222]:
 model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
 
-model2.summary(line_length=150)
 
 model2.fit(x_train, y_train,
           batch_size=6,
