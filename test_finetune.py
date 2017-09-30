@@ -14,14 +14,35 @@ import utils
 import matplotlib.pyplot as plt
 import os
 from keras.layers import Activation, Dense, Flatten
-
+from keras.models import Model
 from pspnet import PSPNet50
+from data_load import *
 
 
 
 
-pspnet_ini = PSPNet50(nb_classes=16, input_shape=(640, 480),
+pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
                               weights='pspnet50_ade20k')
+
+pspnet_ini.model.layers.pop()
+
+
+new_layer = Dense(16, activation='softmax', name='my_dense')
+
+inp = pspnet_ini.model.input
+out = new_layer(pspnet_ini.model.layers[-1].output)
+
+model2 = Model(inp, out)
+
+#model2.summary(line_length=150)
+model2.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+
+
+x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 1000)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 500)
+
+print (x_train.shape)
+print (y_train.shape)
 
 
 '''
