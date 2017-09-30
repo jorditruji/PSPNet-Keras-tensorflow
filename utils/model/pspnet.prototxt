@@ -2,8 +2,8 @@
 input: "data"
 input_dim: 1
 input_dim: 3
-input_dim: 473
-input_dim: 473
+input_dim: 640
+input_dim: 480
 
 layer {
   name: "conv1_1_3x3_s2"
