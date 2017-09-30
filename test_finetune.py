@@ -13,7 +13,7 @@ import layers_builder as layers
 import utils
 import matplotlib.pyplot as plt
 import os
-from keras.layers import Activation, Dense, Flatten, Conv2D
+from keras.layers import Activation, Dense, Flatten, Conv2D, Lambda
 from keras.models import Model,Sequential
 from pspnet import PSPNet50
 from data_load import *
