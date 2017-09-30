@@ -45,6 +45,14 @@ print (x_train.shape)
 print (y_train.shape)
 
 
+model2.fit(x_train, y_train,
+          batch_size=batch_size,
+          nb_epoch=nb_epoch,
+          shuffle=True,
+          verbose=1,
+          validation_data=(x_test, y_test),
+          )
+
 '''
 a=0
 for layer in pspnet_ini.model.layers:
