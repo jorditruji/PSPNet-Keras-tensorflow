@@ -59,7 +59,7 @@ model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=
 model2.summary(line_length=150)
 
 model2.fit(x_train, y_train,
-          batch_size=32,
+          batch_size=6,
           epochs=100,
           shuffle=True,
           verbose=1,
