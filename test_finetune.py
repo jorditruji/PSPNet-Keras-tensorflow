@@ -30,9 +30,7 @@ pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
 
 pspnet_ini.model.summary(line_length=150)
 pspnet_ini.model.layers.pop()
-pspnet_ini.model.layers.pop()
-pspnet_ini.model.layers.pop()
-pspnet_ini.model.layers.pop()
+layer_lambda = pspnet_ini.model.layers.pop()
 
 
 kernel_size=(1,1)
