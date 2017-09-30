@@ -56,17 +56,17 @@ def load_data(path,num_img):
 		head = list(islice(f, num_img))
 		for line in head:
 			printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
-            i += 1
+			i += 1
 			#print (line)
-			if cont<num_img:
-				prova =line.strip().split(' ')
-				img=read_image(prova[0])
-				float_img = img.astype('float16')
-				centered_image = float_img - DATA_MEAN
-				bgr_image = centered_image[:, :, ::-1]  # RGB => BGR
-				input_data = bgr_image[np.newaxis, :, :, :] 
-				images.append(input_data)
-				labels.append(read_label(prova[1]))
+
+			prova =line.strip().split(' ')
+			img=read_image(prova[0])
+			float_img = img.astype('float16')
+			centered_image = float_img - DATA_MEAN
+			bgr_image = centered_image[:, :, ::-1]  # RGB => BGR
+			input_data = bgr_image[np.newaxis, :, :, :] 
+			images.append(input_data)
+			labels.append(read_label(prova[1]))
 	images=np.array(images)
 	labels=np.array(labels)
 	return images, labels
