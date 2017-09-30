@@ -28,6 +28,7 @@ pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
+kernel_size=[1,1]
 new_layer=Conv2D(16, kernel_size, strides=(1, 1))
 #{"name": "conv6", "config": {"filters": 16, "use_bias": true, "name": "conv6", "bias_regularizer": null, "strides": [1, 1], "data_format": "channels_last", "activation": "linear", "trainable": true, "kernel_constraint": null, "activity_regularizer": null, "padding": "valid", "bias_initializer": {"config": {}, "class_name": "Zeros"}, "kernel_initializer": {"config": {"seed": null, "distribution": "uniform", "scale": 1.0, "mode": "fan_avg"}, "class_name": "VarianceScaling"}, "bias_constraint": null, "kernel_size": [1, 1], "kernel_regularizer": null, "dilation_rate": [1, 1]}, "class_name": "Conv2D"
 last_layer = pspnet_ini.model.layers[-1].output
