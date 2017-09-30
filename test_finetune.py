@@ -53,7 +53,7 @@ a=0
 for layer in model2.layers[:222]:
     layer.trainable = False
 
-model2.compile(optimizer=SGD(lr=0.0001, momentum=0.9), loss='categorical_crossentropy')
+model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
 
 model2.summary(line_length=150)
