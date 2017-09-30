@@ -34,19 +34,19 @@ out = new_layer(pspnet_ini.model.layers[-1].output)
 
 model2 = Model(inp, out)
 
-model2.summary(line_length=150)
 model2.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+model2.summary(line_length=150)
 
 
-x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 1000)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 500)
+x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
 
 print (x_train.shape)
 print (y_train.shape)
 
 
 model2.fit(x_train, y_train,
-          batch_size=batch_size,
+          batch_size=32,
           nb_epoch=nb_epoch,
           shuffle=True,
           verbose=1,
