@@ -26,7 +26,7 @@ pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
 
 pspnet_ini.model.layers.pop()
 last_layer = pspnet_ini.model.layers[-1].output
-new_layer = Flatten()(last_layer)
+#new_layer = Flatten()(last_layer)
 new_layer = Dense(16, activation='softmax', name='my_dense')
 
 inp = pspnet_ini.model.input
