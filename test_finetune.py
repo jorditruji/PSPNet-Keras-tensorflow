@@ -32,6 +32,7 @@ pspnet_ini.model.layers.pop()
 
 kernel_size=(1,1)
 new_layer=Conv2D(16, (1, 1), strides=(1, 1), padding='valid', data_format='channels_last', dilation_rate=(1, 1), activation='linear', use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)(pspnet_ini.model.layers[-1].output)
+new_layer = Dense((640, 480), activation='relu', name='fc2')(new_layer)
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
 
 '''
