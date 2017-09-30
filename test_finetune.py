@@ -25,7 +25,7 @@ pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
                               weights='pspnet50_ade20k')
 
 pspnet_ini.model.layers.pop()
-
+pspnet_ini.model.layers.pop()
 
 new_layer = Dense(16, activation='softmax', name='my_dense')
 
@@ -47,7 +47,7 @@ print (y_train.shape)
 
 model2.fit(x_train, y_train,
           batch_size=32,
-          nb_epoch=nb_epoch,
+          nb_epoch=100,
           shuffle=True,
           verbose=1,
           validation_data=(x_test, y_test),
