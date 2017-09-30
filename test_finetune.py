@@ -13,8 +13,8 @@ import layers_builder as layers
 import utils
 import matplotlib.pyplot as plt
 import os
-from keras.layers import Activation, Dense, Flatten, Sequential
-from keras.models import Model
+from keras.layers import Activation, Dense, Flatten
+from keras.models import Model,Sequential
 from pspnet import PSPNet50
 from data_load import *
 
