@@ -40,7 +40,7 @@ model2.summary(line_length=150)
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
 
-print (x_train[:,1,:,:].shape)
+print (np.squeeze(x_train).shape)
 print (y_train.shape)
 
 
