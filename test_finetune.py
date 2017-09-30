@@ -52,6 +52,9 @@ y_test=y_test.reshape(y_test.shape + (1,))
 print (y_train.shape)
 print (y_train.shape)
 
+for layer in model2.layers[:200]:
+    layer.trainable = False
+
 model2.fit(x_train, y_train,
           batch_size=32,
           epochs=100,
