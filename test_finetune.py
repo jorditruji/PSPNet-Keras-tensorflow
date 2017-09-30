@@ -49,9 +49,11 @@ y_test=y_test.reshape(y_test.shape + (1,))
 #y_test = y_test.reshape(-2, y_test.shape[-2])
 print (y_train.shape)
 print (y_train.shape)
-
-for layer in model2.layers[:218]:
+a=0
+for layer in model2.layers:
     layer.trainable = False
+    a=a+1
+print (a)
 
 model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
