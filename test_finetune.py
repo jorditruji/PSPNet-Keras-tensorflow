@@ -34,7 +34,7 @@ out = new_layer(pspnet_ini.model.layers[-1].output)
 
 model2 = Model(inp, out)
 
-model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 model2.summary(line_length=150)
 
 
