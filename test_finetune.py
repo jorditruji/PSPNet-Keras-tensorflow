@@ -29,7 +29,7 @@ last_layer = pspnet_ini.model.layers[-1].output
 new_layer = Flatten()(last_layer)
 new_layer = Dense(307200, activation='relu', name='fc2')(new_layer)
 
-new_layer =(16, activation='softmax', name='my_dense')(new_layer)
+new_layer =Dense(16, activation='softmax', name='my_dense')(new_layer)
 
 inp = pspnet_ini.model.input
 out = new_layer(pspnet_ini.model.layers[-1].output)
