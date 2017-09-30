@@ -25,7 +25,6 @@ pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
                               weights='pspnet50_ade20k')
 
 pspnet_ini.model.layers.pop()
-pspnet_ini.model.layers.pop()
 
 new_layer = Dense(16, activation='softmax', name='my_dense')
 
@@ -41,7 +40,7 @@ model2.summary(line_length=150)
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
 
-print (x_train.shape)
+print (x_train[:,1,:,:].shape)
 print (y_train.shape)
 
 
