@@ -80,7 +80,7 @@ model2 = Model(inp, out)
 '''
 
 
-model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 model2.summary(line_length=150)
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
