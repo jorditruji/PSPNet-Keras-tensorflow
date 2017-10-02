@@ -52,8 +52,9 @@ new_layer=Conv2D(16, (1, 1), strides=(1, 1), padding='valid', data_format='chann
 new_layer = Lambda(resize_like, arguments={'ref_tensor':tf_resize},name='custom')(new_layer)
 inp = pspnet_ini.model.input
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
-#out = Reshape((640*480, 16))(out)
-out =Flatten()(out)
+#
+out = Reshape((640*480, 16))(out)
+#out =Flatten()(out)
 
 #out=Lambda(depth_softmax, name='custom2')(new_layer)
 #out=Reshape((640*480, 16))(out)
@@ -80,12 +81,11 @@ model2 = Model(inp, out)
 '''
 
 
-model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+model2.compile(loss="binary_crossentropy", optimizer='sgd', metrics=['accuracy'])
 model2.summary(line_length=150)
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
 
-print (np.squeeze(x_train).shape)
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
 list_y_train =[]
