@@ -91,9 +91,6 @@ for layer in model2.layers[:222]:
     layer.trainable = False
 
 
-
-model2.summary(line_length=150)
-'''
 model2.fit(x_train, y_train,
           batch_size=6,
           epochs=100,
@@ -101,6 +98,8 @@ model2.fit(x_train, y_train,
           verbose=1,
           validation_data=(x_test, y_test),
           )
+'''
+
 
 a=0
 for layer in pspnet_ini.model.layers:
