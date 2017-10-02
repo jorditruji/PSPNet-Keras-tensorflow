@@ -56,7 +56,7 @@ inp = pspnet_ini.model.input
 
 
 out=Lambda(depth_softmax, name='custom2')(new_layer)
-out=Reshape((640*480, 16))(out)
+out=argmax(Reshape((640*480, 16)), axis=-1)(out)
 model2 = Model(inp, out)
 '''
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
