@@ -43,8 +43,8 @@ def read_label(name):
 	label=io.loadmat(name)[name[:-4]]
 	label=np.transpose(label.astype('uint8'))
 	label = label.ravel()
-	print (label.shape)
-	return label
+	print (label[:,0].shape)
+	return label[:,0]
 
 
 def load_data(path,num_img):
