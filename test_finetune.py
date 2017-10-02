@@ -69,8 +69,8 @@ inp = pspnet_ini.model.input
 model2 = Model(inp, out)
 
 #model2.summary(line_length=150)
-
-
+'''
+model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
 
@@ -89,8 +89,8 @@ y_test = y_test.reshape((-1, 1))
 a=0
 for layer in model2.layers[:222]:
     layer.trainable = False
-'''
-model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+
+
 
 model2.summary(line_length=150)
 '''
