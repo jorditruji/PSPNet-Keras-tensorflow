@@ -91,7 +91,8 @@ x_test = np.squeeze(x_test)
 
 #y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(100, 307200)
-
+print (y_train.shape)
+print (y_test.shape)
 
 y_train = np_utils.to_categorical(y_train, 16)
 print (y_train)
