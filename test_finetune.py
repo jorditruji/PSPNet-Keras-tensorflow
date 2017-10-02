@@ -48,7 +48,7 @@ inp = pspnet_ini.model.input
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
 model2 = Model(inp, out)
 
-model2.summary(line_length=150)
+
 
 '''
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
@@ -69,7 +69,7 @@ inp = pspnet_ini.model.input
 model2 = Model(inp, out)
 
 #model2.summary(line_length=150)
-'''
+
 
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
@@ -89,11 +89,11 @@ y_test = y_test.reshape((-1, 1))
 a=0
 for layer in model2.layers[:222]:
     layer.trainable = False
-
+'''
 model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
-
-
+model2.summary(line_length=150)
+'''
 model2.fit(x_train, y_train,
           batch_size=6,
           epochs=100,
@@ -101,7 +101,7 @@ model2.fit(x_train, y_train,
           verbose=1,
           validation_data=(x_test, y_test),
           )
-'''
+
 a=0
 for layer in pspnet_ini.model.layers:
 	print (layer)
