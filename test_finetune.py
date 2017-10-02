@@ -53,10 +53,10 @@ new_layer = Lambda(resize_like, arguments={'ref_tensor':tf_resize},name='custom'
 inp = pspnet_ini.model.input
 #out =Dense(16, activation='softmax', name='my_dense')(new_layer)
 #out = Reshape((640*480, 16))(out)
-model2 = Model(inp, out)
+
 
 out=Lambda(depth_softmax)(out)
-
+model2 = Model(inp, out)
 '''
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
 
