@@ -80,7 +80,7 @@ x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
 
 
-#y_train = y_train.reshape(100, 307200)
+y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(-2, y_test.shape[-2])
 print (y_train.shape)
 print (y_test.shape)
