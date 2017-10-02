@@ -29,7 +29,7 @@ def resize_like(input_tensor, ref_tensor): # resizes input tensor wrt. ref_tenso
 pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
                               weights='pspnet50_ade20k')
 
-pspnet_ini.model.summary(line_length=150)
+
 pspnet_ini.model.layers.pop()
 layer_lambda = pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
@@ -71,7 +71,10 @@ model2 = Model(inp, out)
 
 #model2.summary(line_length=150)
 '''
+
+
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+model2.summary(line_length=150)
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
 
