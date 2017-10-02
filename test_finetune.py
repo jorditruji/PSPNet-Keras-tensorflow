@@ -106,7 +106,7 @@ for layer in model2.layers[:220]:
 print (y_train.shape)
 
 model2.fit(x_train, y_train,
-          batch_size=6,
+          batch_size=1,
           epochs=100,
           shuffle=True,
           verbose=1,
