@@ -95,8 +95,8 @@ list_y_test=[]
 
 
 
-y_train = np_utils.to_categorical(y_train, 16)
-y_test = np_utils.to_categorical(y_test, 16)
+#y_train = np_utils.to_categorical(y_train, 16)
+#y_test = np_utils.to_categorical(y_test, 16)
 
 a=0
 for layer in model2.layers[:220]:
