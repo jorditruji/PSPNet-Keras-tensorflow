@@ -133,3 +133,4 @@ pspnet.model.layers.pop()
 pspnet.model.outputs = [pspnet.model.layers[-1].output]
 pspnet.model.layers[-1].outbound_nodes = []
 pspnet.model.add(Dense(16, activation='softmax'))
+'''
