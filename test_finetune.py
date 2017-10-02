@@ -113,7 +113,7 @@ model2.fit(x_train, y_train,
           epochs=100,
           shuffle=True,
           verbose=1,
-          validation_data=(x_test, y_test),
+          validation_data=(list_x_test, list_y_test),
           )
 '''
 
