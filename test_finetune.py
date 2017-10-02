@@ -103,7 +103,7 @@ for layer in model2.layers[:220]:
     layer.trainable = False
     a=a+1
 
-print a
+print (a)
 
 model2.fit(x_train, y_train,
           batch_size=6,
