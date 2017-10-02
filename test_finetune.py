@@ -81,7 +81,7 @@ model2 = Model(inp, out)
 '''
 
 
-model2.compile(loss="sparse_categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 model2.summary(line_length=150)
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
@@ -97,7 +97,7 @@ list_y_test=[]
 
 y_train = np_utils.to_categorical(y_train, 16)
 y_test = np_utils.to_categorical(y_test, 16)
-
+y.reshape((20, 640 * 480 * 16))
 a=0
 for layer in model2.layers[:220]:
     layer.trainable = False
@@ -106,7 +106,7 @@ for layer in model2.layers[:220]:
 print (y_train.shape)
 
 model2.fit(x_train, y_train,
-          batch_size=1,
+          batch_size=5,
           epochs=100,
           shuffle=True,
           verbose=1,
