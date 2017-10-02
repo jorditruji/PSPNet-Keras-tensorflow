@@ -52,8 +52,8 @@ new_layer=Conv2D(16, (1, 1), strides=(1, 1), padding='valid', data_format='chann
 new_layer = Lambda(resize_like, arguments={'ref_tensor':tf_resize},name='custom')(new_layer)
 inp = pspnet_ini.model.input
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
-out = Reshape((640*480, 16))(out)
-
+#out = Reshape((640*480, 16))(out)
+out =Flatten()(out)
 
 #out=Lambda(depth_softmax, name='custom2')(new_layer)
 #out=Reshape((640*480, 16))(out)
@@ -110,6 +110,7 @@ for layer in model2.layers[:222]:
     layer.trainable = False
 
 print 
+
 model2.fit(x_train, list_y_train,
           batch_size=6,
           epochs=100,
