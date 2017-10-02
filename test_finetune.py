@@ -99,10 +99,11 @@ y_train = np_utils.to_categorical(y_train, 16)
 y_test = np_utils.to_categorical(y_test, 16)
 
 a=0
-for layer in model2.layers[:222]:
+for layer in model2.layers[:220]:
     layer.trainable = False
+    a=a+1
 
-print 
+print a
 
 model2.fit(x_train, y_train,
           batch_size=6,
