@@ -19,6 +19,11 @@ from keras.models import Model,Sequential
 from pspnet import PSPNet50
 from data_load import *
 
+def depth_softmax(matrix):
+    sigmoid = lambda x: 1 / (1 + K.exp(-x))
+    sigmoided_matrix = sigmoid(matrix)
+    softmax_matrix = sigmoided_matrix / K.sum(sigmoided_matrix, axis=0)
+    return softmax_matrix
 
 def resize_like(input_tensor, ref_tensor): # resizes input tensor wrt. ref_tensor
     H, W = ref_tensor.get_shape()[1], ref_tensor.get_shape()[2]
@@ -46,11 +51,11 @@ new_layer=Conv2D(16, (1, 1), strides=(1, 1), padding='valid', data_format='chann
 #new_layer = Dense((640, 480), activation='relu', name='fc2')(new_layer)
 new_layer = Lambda(resize_like, arguments={'ref_tensor':tf_resize},name='custom')(new_layer)
 inp = pspnet_ini.model.input
-out =Dense(16, activation='softmax', name='my_dense')(new_layer)
-out = Reshape((640*480, 16))(out)
+#out =Dense(16, activation='softmax', name='my_dense')(new_layer)
+#out = Reshape((640*480, 16))(out)
 model2 = Model(inp, out)
 
-
+out=Lambda(depth_softmax)(out)
 
 '''
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
