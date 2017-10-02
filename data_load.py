@@ -42,7 +42,7 @@ def read_image(name):
 def read_label(name):
 	label=io.loadmat(name)[name[:-4]]
 	label=np.transpose(label.astype('uint8'))
-	label = np.squeeze(np.asarray(label))
+	label = label.ravel()
 	print (label.shape)
 	return label
 
