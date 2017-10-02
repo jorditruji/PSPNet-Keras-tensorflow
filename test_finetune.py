@@ -99,6 +99,8 @@ for a in range(100):
      #print ((np_utils.to_categorical(y_train[a,:,:], 16).shape))
      list_y_train.append(np_utils.to_categorical(y_train[a,:,:], 16))
      list_y_test.append(np_utils.to_categorical(y_test[a,:,:], 16))
+print (np.array(list_y_train).shape)
+print (np.array(list_y_test).shape)
 
 y_train = np_utils.to_categorical(y_train, 16)
 y_test = np_utils.to_categorical(y_test, 16)
@@ -108,12 +110,12 @@ for layer in model2.layers[:222]:
     layer.trainable = False
 
 print 
-model2.fit(x_train, y_train,
+model2.fit(x_train, list_y_train,
           batch_size=6,
           epochs=100,
           shuffle=True,
           verbose=1,
-          validation_data=(list_y_test, list_y_test),
+          validation_data=(x_test, list_y_test),
           )
 '''
 
