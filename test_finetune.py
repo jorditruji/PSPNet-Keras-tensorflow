@@ -46,7 +46,7 @@ new_layer=Conv2D(16, (1, 1), strides=(1, 1), padding='valid', data_format='chann
 new_layer = Lambda(resize_like, arguments={'ref_tensor':tf_resize},name='custom')(new_layer)
 inp = pspnet_ini.model.input
 out =Dense(16, activation='softmax', name='my_dense')(new_layer)
-out = Reshape((640*480, num_classes))(out)
+out = Reshape((640*480, 16))(out)
 model2 = Model(inp, out)
 
 
