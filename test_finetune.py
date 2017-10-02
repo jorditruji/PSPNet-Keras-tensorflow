@@ -94,7 +94,7 @@ list_y_test=[]
 #y_test = y_test.reshape(100, 307200)
 print (y_train.shape)
 print (y_test.shape)
-for a in y_train.shape[0]:
+for a in (0,y_train.shape[0]-1):
      list_y_train.append(np_utils.to_categorical(y_train[a,:,:], 16))
      list_y_test.append(np_utils.to_categorical(y_test[a,:,:], 16))
 y_train = np_utils.to_categorical(y_train, 16)
