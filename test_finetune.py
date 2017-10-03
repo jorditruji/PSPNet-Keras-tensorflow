@@ -18,24 +18,24 @@ import matplotlib
 
 def class_weighted_pixelwise_crossentropy(target, output):
     output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
-    with open('class_weights.pickle', 'rb') as f:
-        weight = {0: 0.1,
-                 1: 2,
-                 2: 2,
-                 3: 2,
-                 4: 2,
-                 5: 2,
-                 6: 2,
-                 7: 2,
-                 8: 2,
-                 9: 2,
-                 10: 2,
-                 11: 2,
-                 12: 2,
-                 13: 2,
-                 14: 2,
-                 15: 2
-                 }
+    #with open('class_weights.pickle', 'rb') as f:
+     weight = {0: 0.1,
+          1: 2,
+          2: 2,
+          3: 2,
+          4: 2,
+          5: 2,
+          6: 2,
+          7: 2,
+          8: 2,
+          9: 2,
+          10: 2,
+          11: 2,
+          12: 2,
+          13: 2,
+          14: 2,
+          15: 2
+          }
     return -tf.reduce_sum(target * weight * tf.log(output))
 
 # Force matplotlib to not use any Xwindows backend.
@@ -141,8 +141,8 @@ model2 = Model(inp, out)
 
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
-x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 800)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 320)
+x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 50)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 50)
 
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
@@ -172,7 +172,7 @@ print (y_train.shape)
 
 history=model2.fit(x_train, y_train,
           batch_size=8,
-          epochs=50,
+          epochs=1,
           shuffle=True,
           verbose=1,
           validation_data=(x_test, y_test),
@@ -191,39 +191,3 @@ plot_metrics(history)
 
 #plot_confusion_matrix(cm, data.names_class)
 
-
-'''
-
-
-a=0
-for layer in pspnet_ini.model.layers:
-	print (layer)
-	layer.trainable = False
-	a=a+1
-print (a)
-
-
-
-inp = pspnet_ini.model.input                                           # input placeholder
-outputs = [layer.output for layer in pspnet_ini.model.layers]          # all layer outputs
-functors = [K.function([inp]+ [K.learning_phase()], [out]) for out in outputs]  # evaluation functions
-
-# Testing
-input_shape=(640,480,3)
-test = np.random.random(input_shape)[np.newaxis,...]
-layer_outs = [func([test, 1.]) for func in functors]
-print(layer_outs)
-
-
-last = pspnet_ini.model.output
-x = Flatten()(last)
-x = Dense(1024, activation='relu')(x)
-preds = Dense(16, activation='softmax')(x)
-
-model = Model(pspnet_ini.input, preds)
-
-pspnet.model.layers.pop()
-pspnet.model.outputs = [pspnet.model.layers[-1].output]
-pspnet.model.layers[-1].outbound_nodes = []
-pspnet.model.add(Dense(16, activation='softmax'))
-'''
