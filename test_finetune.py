@@ -157,8 +157,7 @@ history=model2.fit(x_train, y_train,
           )
 plot_metrics(history)
 #predict_labels=model.predict(data.X_val)
-predictions = []
-orig_predictions=[]
+
 
 #for prediction,orig_prediction in zip(predict_labels,data.labels_val):
   #  ind1 = np.argmax(prediction)
