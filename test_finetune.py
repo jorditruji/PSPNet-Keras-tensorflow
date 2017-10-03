@@ -131,7 +131,7 @@ a=0
 '''
 for layer in model2.layers[:-6]:
     layer.trainable = False
-sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
+sgd = SGD(lr=0.00001, momentum=0, decay=0.002, nesterov=True)
 model2.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
 
 model2.summary(line_length=150)
@@ -140,8 +140,8 @@ model2.summary(line_length=150)
 print (y_train.shape)
 
 history=model2.fit(x_train, y_train,
-          batch_size=12,
-          epochs=100,
+          batch_size=8,
+          epochs=50,
           shuffle=True,
           verbose=1,
           validation_data=(x_test, y_test),
