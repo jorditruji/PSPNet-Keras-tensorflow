@@ -4,7 +4,7 @@ import numpy as np
 from itertools import islice
 import time
 import shutil
-
+from keras.utils import np_utils
 import random
 import numpy as np
 from scipy import misc, ndimage, io
@@ -43,7 +43,7 @@ def read_label(name):
 	label=io.loadmat(name)[name[:-4]]
 	label=np.transpose(label.astype('uint8'))
 	label = label.ravel()
-	label=np.squeeze(label, axis=1)
+	label = np_utils.to_categorical(label, 16)
 	print (label.shape)
 	return label
 
