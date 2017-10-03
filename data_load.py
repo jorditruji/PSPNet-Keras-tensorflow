@@ -72,7 +72,6 @@ def load_data(path,num_img):
 			labels.append(read_label(prova[1]))
 	images=np.array(images)
 	labels=np.array(labels)
-	print images.shape
 	return images, labels
 
 def create_mean(path):
