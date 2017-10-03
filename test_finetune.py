@@ -125,10 +125,10 @@ model2 = Model(inp, out)
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 
 
-model2.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
 
-x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 700)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 300)
+
+x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 600)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 200)
 
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
@@ -152,7 +152,6 @@ sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=sgd, metrics=['accuracy'])
 
 model2.summary(line_length=150)
-
 
 print (y_train.shape)
 
