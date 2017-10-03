@@ -13,7 +13,11 @@ from keras.models import model_from_json
 import tensorflow as tf
 import layers_builder as layers
 import utils
+import matplotlib
 import matplotlib.pyplot as plt
+
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
 import os
 from keras.layers import Activation, Dense, Flatten, Conv2D, Lambda, Input, Reshape
 from keras.models import Model,Sequential
