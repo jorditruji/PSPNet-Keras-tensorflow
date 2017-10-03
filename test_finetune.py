@@ -110,8 +110,8 @@ model2 = Model(inp, out)
 
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
-x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 2500)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 600)
+x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 700)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 300)
 
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
@@ -129,7 +129,7 @@ y_train=y_train.reshape((100, 640 * 480 * 16))
 y_test=y_test.reshape((100, 640 * 480 * 16))
 a=0
 '''
-for layer in model2.layers[:-8]:
+for layer in model2.layers[:-6]:
     layer.trainable = False
 
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
