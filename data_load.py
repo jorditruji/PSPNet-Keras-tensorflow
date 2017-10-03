@@ -56,7 +56,7 @@ def load_data(path,num_img):
 	i=0
 	with open(filename) as f:
 		head = list(islice(f, num_img))
-		head=random.sample(f.readlines(),100)
+		head=random.sample(f.readlines(),num_img)
 		for line in head:
 			printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
 			i += 1
@@ -72,6 +72,7 @@ def load_data(path,num_img):
 			labels.append(read_label(prova[1]))
 	images=np.array(images)
 	labels=np.array(labels)
+	print images.shape
 	return images, labels
 
 def create_mean(path):
