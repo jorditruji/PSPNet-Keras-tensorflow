@@ -16,6 +16,28 @@ import utils
 import matplotlib
 
 
+def class_weighted_pixelwise_crossentropy(target, output):
+    output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
+    with open('class_weights.pickle', 'rb') as f:
+        weight = {0: 0.1,
+                 1: 2,
+                 2: 2,
+                 3: 2,
+                 4: 2,
+                 5: 2,
+                 6: 2,
+                 7: 2,
+                 8: 2,
+                 9: 2,
+                 10: 2,
+                 11: 2,
+                 12: 2,
+                 13: 2,
+                 14: 2,
+                 15: 2
+                 }
+    return -tf.reduce_sum(target * weight * tf.log(output))
+
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use('Agg')
 import os
@@ -120,7 +142,7 @@ model2 = Model(inp, out)
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 800)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 200)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 320)
 
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
@@ -141,7 +163,7 @@ a=0
 for layer in model2.layers[:-6]:
     layer.trainable = False
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
-model2.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
+model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=sgd, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 
