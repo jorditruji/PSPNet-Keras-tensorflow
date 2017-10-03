@@ -115,8 +115,8 @@ model2 = Model(inp, out)
 
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
-x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 1000)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 300)
+x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 200)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 50)
 
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
@@ -146,7 +146,7 @@ print (y_train.shape)
 
 history=model2.fit(x_train, y_train,
           batch_size=8,
-          epochs=50,
+          epochs=1,
           shuffle=True,
           verbose=1,
           validation_data=(x_test, y_test),
