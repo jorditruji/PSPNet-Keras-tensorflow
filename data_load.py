@@ -44,7 +44,7 @@ def read_label(name):
 	label=np.transpose(label.astype('uint8'))
 	label = label.ravel()
 	label = np_utils.to_categorical(label, 16)
-	print (label.shape)
+	#print (label.shape)
 	return label
 
 
