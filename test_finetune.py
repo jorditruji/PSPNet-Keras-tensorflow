@@ -138,7 +138,7 @@ y_train=y_train.reshape((100, 640 * 480 * 16))
 y_test=y_test.reshape((100, 640 * 480 * 16))
 a=0
 '''
-for layer in model2.layers[:-8]:
+for layer in model2.layers[:-6]:
     layer.trainable = False
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 model2.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
