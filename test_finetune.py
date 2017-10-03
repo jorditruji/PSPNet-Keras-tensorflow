@@ -82,7 +82,7 @@ model2 = Model(inp, out)
 
 
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
-model2.summary(line_length=150)
+
 x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
 
@@ -104,17 +104,37 @@ a=0
 '''
 for layer in model2.layers[:220]:
     layer.trainable = False
+    
+model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+
+model2.summary(line_length=150)
 
 
 print (y_train.shape)
 
-model2.fit(x_train, y_train,
+history=model2.fit(x_train, y_train,
           batch_size=5,
           epochs=100,
           shuffle=True,
           verbose=1,
           validation_data=(x_test, y_test),
           )
+plot_metrics(history)
+predict_labels=model.predict(data.X_val)
+predictions = []
+orig_predictions=[]
+
+for prediction,orig_prediction in zip(predict_labels,data.labels_val):
+    ind1 = np.argmax(prediction)
+    ind2= np.argmax(orig_prediction)
+    predictions.append(ind1)
+    orig_predictions.append(ind2)
+
+cm=confusion_matrix(orig_predictions, predictions)
+
+plot_confusion_matrix(cm, data.names_class)
+
+
 '''
 
 
