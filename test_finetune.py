@@ -131,8 +131,8 @@ a=0
 '''
 for layer in model2.layers[:-6]:
     layer.trainable = False
-
-model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
+sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
+model2.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 
