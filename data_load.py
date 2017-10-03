@@ -43,6 +43,7 @@ def read_label(name):
 	label=io.loadmat(name)[name[:-4]]
 	label=np.transpose(label.astype('uint8'))
 	label = label.ravel()
+	label=np.squeeze(label, axis=None)
 	print (label.shape)
 	return label
 
