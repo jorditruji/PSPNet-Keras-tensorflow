@@ -140,7 +140,7 @@ model2.summary(line_length=150)
 print (y_train.shape)
 
 history=model2.fit(x_train, y_train,
-          batch_size=5,
+          batch_size=32,
           epochs=100,
           shuffle=True,
           verbose=1,
