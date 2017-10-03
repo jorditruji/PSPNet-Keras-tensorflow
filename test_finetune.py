@@ -157,7 +157,7 @@ print (y_train.shape)
 
 history=model2.fit(x_train, y_train,
           batch_size=8,
-          epochs=1,
+          epochs=50,
           shuffle=True,
           verbose=1,
           validation_data=(x_test, y_test),
