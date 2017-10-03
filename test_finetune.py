@@ -104,7 +104,7 @@ a=0
 '''
 for layer in model2.layers[:220]:
     layer.trainable = False
-    a=a+1
+
 
 print (y_train.shape)
 
