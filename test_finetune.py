@@ -31,6 +31,33 @@ def resize_like(input_tensor, ref_tensor): # resizes input tensor wrt. ref_tenso
 
 
 
+def plot_metrics(history):
+
+    print(history.history.keys())
+
+    fig = plt.figure(1)
+
+    # summarize history for accuracy
+
+    plt.subplot(211)
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_acc'])
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+
+    # summarize history for loss
+
+    plt.subplot(212)
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+
+    fig.savefig('metrics_after_pyramid.png', dpi=fig.dpi)
 
 pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
                               weights='pspnet50_ade20k')
@@ -83,8 +110,8 @@ model2 = Model(inp, out)
 
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
-x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 100)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 100)
+x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 4000)
+x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 1500)
 
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
@@ -102,9 +129,9 @@ y_train=y_train.reshape((100, 640 * 480 * 16))
 y_test=y_test.reshape((100, 640 * 480 * 16))
 a=0
 '''
-for layer in model2.layers[:220]:
+for layer in model2.layers[:-8]:
     layer.trainable = False
-    
+
 model2.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=['accuracy'])
 
 model2.summary(line_length=150)
@@ -120,19 +147,19 @@ history=model2.fit(x_train, y_train,
           validation_data=(x_test, y_test),
           )
 plot_metrics(history)
-predict_labels=model.predict(data.X_val)
+#predict_labels=model.predict(data.X_val)
 predictions = []
 orig_predictions=[]
 
-for prediction,orig_prediction in zip(predict_labels,data.labels_val):
-    ind1 = np.argmax(prediction)
-    ind2= np.argmax(orig_prediction)
-    predictions.append(ind1)
-    orig_predictions.append(ind2)
+#for prediction,orig_prediction in zip(predict_labels,data.labels_val):
+  #  ind1 = np.argmax(prediction)
+   # ind2= np.argmax(orig_prediction)
+   # predictions.append(ind1)
+   # orig_predictions.append(ind2)
 
-cm=confusion_matrix(orig_predictions, predictions)
+#cm=confusion_matrix(orig_predictions, predictions)
 
-plot_confusion_matrix(cm, data.names_class)
+#plot_confusion_matrix(cm, data.names_class)
 
 
 '''
