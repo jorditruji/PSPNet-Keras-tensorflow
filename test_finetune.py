@@ -14,7 +14,7 @@ import tensorflow as tf
 import layers_builder as layers
 import utils
 import matplotlib
-import matplotlib.pyplot as plt
+
 
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use('Agg')
@@ -36,33 +36,37 @@ def resize_like(input_tensor, ref_tensor): # resizes input tensor wrt. ref_tenso
 
 
 
+
+
+
 def plot_metrics(history):
 
     print(history.history.keys())
 
-    fig = plt.figure(1)
+    fig = matplotlib.pyplot.figure(1)
 
     # summarize history for accuracy
 
-    plt.subplot(211)
-    plt.plot(history.history['acc'])
-    plt.plot(history.history['val_acc'])
-    plt.title('model accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
+    matplotlib.pyplot.subplot(211)
+    matplotlib.pyplot.plot(history.history['acc'])
+    matplotlib.pyplot.plot(history.history['val_acc'])
+    matplotlib.pyplot.title('model accuracy')
+    matplotlib.pyplot.ylabel('accuracy')
+    matplotlib.pyplot.xlabel('epoch')
+    matplotlib.pyplot.legend(['train', 'test'], loc='upper left')
 
     # summarize history for loss
 
-    plt.subplot(212)
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
+    matplotlib.pyplot.subplot(212)
+    matplotlib.pyplot.plot(history.history['loss'])
+    matplotlib.pyplot.plot(history.history['val_loss'])
+    matplotlib.pyplot.title('model loss')
+    matplotlib.pyplot.ylabel('loss')
+    matplotlib.pyplot.xlabel('epoch')
+    matplotlib.pyplot.legend(['train', 'test'], loc='upper left')
+    fig.savefig('metrics.png', dpi=fig.dpi)
 
-    fig.savefig('metrics_after_pyramid.png', dpi=fig.dpi)
+# Load dataset
 
 pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
                               weights='pspnet50_ade20k')
