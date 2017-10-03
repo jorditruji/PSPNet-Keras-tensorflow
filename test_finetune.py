@@ -17,26 +17,11 @@ import matplotlib
 
 
 def class_weighted_pixelwise_crossentropy(target, output):
-    output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
-    #with open('class_weights.pickle', 'rb') as f:
-     weight = {0: 0.1,
-          1: 2,
-          2: 2,
-          3: 2,
-          4: 2,
-          5: 2,
-          6: 2,
-          7: 2,
-          8: 2,
-          9: 2,
-          10: 2,
-          11: 2,
-          12: 2,
-          13: 2,
-          14: 2,
-          15: 2
-          }
-    return -tf.reduce_sum(target * weight * tf.log(output))
+     output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
+
+     #with open('class_weights.pickle', 'rb') as f:
+     weight = [0.1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ,2 ,2 ,2 ,2 ,2]
+     return -tf.reduce_sum(target * weight * tf.log(output))
 
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use('Agg')
