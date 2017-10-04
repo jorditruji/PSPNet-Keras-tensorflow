@@ -155,7 +155,7 @@ model2.summary(line_length=150)
 
 #print (y_train.shape)
 
-history= model.fit_generator(
+history= model2.fit_generator(
      load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8),
       samples_per_epoch = 3000,
        nb_epoch = 30,
