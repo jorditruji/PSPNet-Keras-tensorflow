@@ -69,7 +69,7 @@ def load_data(path,num_img):
 			bgr_image = centered_image[:, :, ::-1]  # RGB => BGR
 			input_data = bgr_image[np.newaxis, :, :, :] 
 			images.append(input_data)
-			labels.append(read_label(prova[1]))
+			labels.append(np.array(read_label(prova[1])))
 	images=tuple(images)
 	labels=tuple(labels)
 	images= np.squeeze(images)
