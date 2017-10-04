@@ -16,6 +16,7 @@ import utils
 import matplotlib
 
 
+
 def class_weighted_pixelwise_crossentropy(target, output):
      output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
 
@@ -153,7 +154,6 @@ model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=adam, metri
 
 model2.summary(line_length=150)
 
-print (len(load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8)))
 
 history= model2.fit_generator(
      load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8),
