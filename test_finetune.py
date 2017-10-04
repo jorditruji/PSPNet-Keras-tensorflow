@@ -130,8 +130,8 @@ sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 #x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 600)
 #x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 200)
 
-x_train= np.squeeze(x_train)
-x_test = np.squeeze(x_test)
+#x_train= np.squeeze(x_train)
+#x_test = np.squeeze(x_test)
 
 #y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(100, 307200)
