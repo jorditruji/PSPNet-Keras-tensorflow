@@ -69,18 +69,19 @@ def load_data(path,num_img):
 			bgr_image = centered_image[:, :, ::-1]  # RGB => BGR
 			input_data = bgr_image[np.newaxis, :, :, :] 
 			images.append(input_data)
-			labels.append(np.array(read_label(prova[1])))
-	images=tuple(images)
-	labels=tuple(labels)
+			labels.append(read_label(prova[1]))
+	images=np.array(images)
+	labels=np.array(labels)
 	images= np.squeeze(images)
-
+	print (images.shape)
+	print (labels.shape)
 	#labels = labels.reshape(num_img, 307200)
 #y_test = y_test.reshape(100, 307200)
 
 #y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(100, 307200)
 
-	return images, labels
+	return (images, labels
 
 def create_mean(path):
 	filename = path
