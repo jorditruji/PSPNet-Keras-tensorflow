@@ -73,7 +73,9 @@ def load_data(path,num_img):
 	images=np.array(images)
 	labels=np.array(labels)
 	images= np.squeeze(images)
-	labels = labels.reshape(num_img, 307200)
+	print (images.shape)
+	print (labels.shape)
+	#labels = labels.reshape(num_img, 307200)
 #y_test = y_test.reshape(100, 307200)
 
 #y_train = y_train.reshape(100, 307200)
