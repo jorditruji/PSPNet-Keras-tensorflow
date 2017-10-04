@@ -81,7 +81,7 @@ def load_data(path,num_img):
 #y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(100, 307200)
 
-	return images, labels
+	return (images, labels)
 
 def create_mean(path):
 	filename = path
