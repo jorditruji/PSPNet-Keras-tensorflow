@@ -3,7 +3,7 @@ from __future__ import division
 from os.path import splitext, join, isfile
 from os import environ
 from math import ceil
-from keras.optimizers import SGD
+from keras.optimizers import SGD, Adam
 import argparse
 from keras.utils import np_utils
 import numpy as np
