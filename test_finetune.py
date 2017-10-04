@@ -154,7 +154,7 @@ model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=adam, metri
 model2.summary(line_length=150)
 
 #print (y_train.shape)
-
+print(trype(load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8))
 history= model2.fit_generator(
      load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8),
       steps_per_epoch = 300,
