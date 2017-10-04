@@ -159,12 +159,9 @@ history= model2.fit_generator(
      load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8),
       steps_per_epoch = 300,
        nb_epoch = 30,
-        verbose=1,
-          callbacks=[], 
+        verbose=1, 
           validation_data=load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 8), 
-          nb_val_samples= 100,
-          class_weight=None,
-           nb_worker=4)
+          nb_val_samples= 100)
 
 #history=model2.fit(x_train, y_train,
 #          batch_size=8,
