@@ -56,10 +56,9 @@ def load_data(path,num_img):
 		cont=0
 		i=0
 		with open(filename) as f:
-			head = list(islice(f, num_img))
-			head=random.sample(f.readlines(),num_img)
-			for line in head:
-				printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
+			for line in iter(lambda: list(itertools.islice(f, 100)), []):
+		#	for line in head:
+				#printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
 				i += 1
 				#print (line)
 
@@ -78,10 +77,8 @@ def load_data(path,num_img):
 		print (labels.shape)
 		#labels = labels.reshape(num_img, 307200)
 	#y_test = y_test.reshape(100, 307200)
-
 	#y_train = y_train.reshape(100, 307200)
 	#y_test = y_test.reshape(100, 307200)
-
 		return images, labels
 
 def create_mean(path):
