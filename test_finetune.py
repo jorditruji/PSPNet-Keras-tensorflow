@@ -160,7 +160,6 @@ history= model2.fit_generator(
       steps_per_epoch = 300,
        nb_epoch = 30,
         verbose=1,
-         show_accuracy=True,
           callbacks=[], 
           validation_data=load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 8), 
           nb_val_samples= 100,
