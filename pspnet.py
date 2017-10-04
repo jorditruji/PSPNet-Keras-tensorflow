@@ -24,7 +24,7 @@ import os
 #__author__ = "Vlad Kryvoruchko, Chaoyue Wang, Jeffrey Hu & Julian Tatsch"
 
 
-# These are the means for the ImageNet pretrained ResNet
+# These are the means pretrained 
 DATA_MEAN = np.array([[[123.68, 116.779, 103.939]]])  # RGB order
 EVALUATION_SCALES = [1.0]  # must be all floats!
 

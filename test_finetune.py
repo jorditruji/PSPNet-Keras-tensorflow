@@ -127,13 +127,12 @@ sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 
 
 
-x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 600)
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 200)
+#x_train, y_train = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 600)
+#x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 200)
 
 x_train= np.squeeze(x_train)
 x_test = np.squeeze(x_test)
-list_y_train =[]
-list_y_test=[]
+
 #y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(100, 307200)
 
@@ -149,11 +148,23 @@ a=0
 for layer in model2.layers[:-8]:
     layer.trainable = False
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
-model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=sgd, metrics=['accuracy'])
+adam=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
+model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 
 print (y_train.shape)
+
+history= model.fit_generator(
+     load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8),
+      samples_per_epoch = 3000,
+       nb_epoch = 30,
+        verbose=2,
+         show_accuracy=True,
+          callbacks=[], 
+          validation_data=load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 8), 
+          class_weight=None,
+           nb_worker=1)
 
 history=model2.fit(x_train, y_train,
           batch_size=8,
