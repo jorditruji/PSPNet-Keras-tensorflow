@@ -56,9 +56,10 @@ def load_data(path,num_img):
 		cont=0
 		i=0
 		with open(filename) as f:
-			for line in iter(lambda: list(islice(f, 100)), []):
-		#	for line in head:
-				#printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
+			head = list(islice(f, num_img))
+			head=random.sample(f.readlines(),num_img)
+			for line in head:
+				printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
 				i += 1
 				#print (line)
 
