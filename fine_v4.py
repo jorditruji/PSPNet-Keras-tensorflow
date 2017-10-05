@@ -21,7 +21,7 @@ def class_weighted_pixelwise_crossentropy(target, output):
      output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
 
      #with open('class_weights.pickle', 'rb') as f:
-     weight = [0.000005, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001 ,0.00001 ,0.00001 ,0.00001 ,0.00001 ,0.00001]
+     weight = [0.0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1 ,1 ,1 ,1]
      return -tf.reduce_sum(target * weight * tf.log(output))
 
 # Force matplotlib to not use any Xwindows backend.
@@ -41,9 +41,6 @@ def depth_softmax(matrix):
 def resize_like(input_tensor, ref_tensor): # resizes input tensor wrt. ref_tensor
     H, W = ref_tensor.get_shape()[1], ref_tensor.get_shape()[2]
     return tf.image.resize_nearest_neighbor(input_tensor, [H.value, W.value])
-
-
-
 
 
 
@@ -72,7 +69,7 @@ def plot_metrics(history):
     matplotlib.pyplot.ylabel('loss')
     matplotlib.pyplot.xlabel('epoch')
     matplotlib.pyplot.legend(['train', 'test'], loc='upper left')
-    fig.savefig('metrics_V3_0_0001_adam.png', dpi=fig.dpi)
+    fig.savefig('metrics_v4.png', dpi=fig.dpi)
 
 # Load dataset
 
@@ -83,7 +80,7 @@ pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
 pspnet_ini.model.layers.pop()
 layer_lambda = pspnet_ini.model.layers.pop()
 pspnet_ini.model.layers.pop()
-
+print(layer_lambda.get_config())
 '''
 layer_lambda = pspnet_ini.model.layers.pop()
 layer_lambda.get_config()
@@ -123,8 +120,6 @@ model2 = Model(inp, out)
 
 #model2.summary(line_length=150)
 '''
-sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
-
 
 
 
@@ -146,25 +141,26 @@ y_train=y_train.reshape((100, 640 * 480 * 16))
 y_test=y_test.reshape((100, 640 * 480 * 16))
 a=0
 '''
-for layer in model2.layers[:-6]:
+for layer in model2.layers[:-8]:
     layer.trainable = False
 
 
 
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 adam=Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
-model2.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
+
+model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 
 
 history= model2.fit_generator(
-     load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 8),
-      steps_per_epoch = 100,
+     load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 4),
+      steps_per_epoch = 600,
        nb_epoch = 30,
         verbose=1, 
-          validation_data=load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 8),
-          validation_steps=40)
+          validation_data=load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 4),
+          validation_steps=180)
 
 #history=model2.fit(x_train, y_train,
 #          batch_size=8,

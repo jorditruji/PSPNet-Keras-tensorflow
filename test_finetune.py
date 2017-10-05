@@ -21,7 +21,7 @@ def class_weighted_pixelwise_crossentropy(target, output):
      output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
 
      #with open('class_weights.pickle', 'rb') as f:
-     weight = [0.000005, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001, 0.00001 ,0.00001 ,0.00001 ,0.00001 ,0.00001 ,0.00001]
+     weight = [0.0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1 ,1 ,1 ,1]
      return -tf.reduce_sum(target * weight * tf.log(output))
 
 # Force matplotlib to not use any Xwindows backend.
@@ -147,7 +147,8 @@ for layer in model2.layers[:-8]:
 
 
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
-adam=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
+adam=Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
+
 model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
