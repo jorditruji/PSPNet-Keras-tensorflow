@@ -44,9 +44,6 @@ def resize_like(input_tensor, ref_tensor): # resizes input tensor wrt. ref_tenso
 
 
 
-
-
-
 def plot_metrics(history):
 
     print(history.history.keys())
@@ -123,8 +120,6 @@ model2 = Model(inp, out)
 
 #model2.summary(line_length=150)
 '''
-sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
-
 
 
 
@@ -148,6 +143,9 @@ a=0
 '''
 for layer in model2.layers[:-8]:
     layer.trainable = False
+
+
+
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 adam=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
 model2.compile(loss=class_weighted_pixelwise_crossentropy, optimizer=adam, metrics=['accuracy'])
