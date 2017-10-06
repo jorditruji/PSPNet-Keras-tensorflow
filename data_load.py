@@ -119,6 +119,7 @@ def img2int(img):
     mask=np.zeros(img.shape,dtype=np.uint8)
     mask_std=np.zeros(img.shape,dtype=np.uint8)
     cont=0
+    h,w = img.shape
     for pos in product(range(h), range(w)):
     #for idx in img:
         pixel =  img.item(pos[0],pos[1])
