@@ -14,7 +14,7 @@ import tensorflow as tf
 import layers_builder as layers
 import utils
 import matplotlib
-
+import cv2
 
 
 def class_weighted_pixelwise_crossentropy(target, output):
