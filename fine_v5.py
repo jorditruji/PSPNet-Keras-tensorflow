@@ -204,7 +204,6 @@ model2 = Model(inp, out)
 #x_train= np.squeeze(x_train)
 #x_test= load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 1)
 
-print(x_test.shape)
 
 #y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(100, 307200)
