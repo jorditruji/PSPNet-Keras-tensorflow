@@ -14,6 +14,7 @@ import tensorflow as tf
 import layers_builder as layers
 import utils
 import matplotlib
+import cv2
 import scipy.io
 
 def w_categorical_crossentropy(weights):
