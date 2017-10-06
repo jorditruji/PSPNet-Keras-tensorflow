@@ -83,6 +83,35 @@ def load_data(path,num_img):
 		yield images, labels
 
 
+def equalize_hist(img):
+    equ = cv2.equalizeHist(img)
+    #res = np.hstack((img,equ)) #stacking images side-by-side
+    return equ
+    #cv2.imwrite('res.png',res)
+
+
+def read_pgm(filename, byteorder='>'):
+    """Return image data from a raw PGM file as numpy array.
+
+    Format specification: http://netpbm.sourceforge.net/doc/pgm.html
+
+    """
+    with open(filename, 'rb') as f:
+        buffer = f.read()
+    try:
+        header, width, height, maxval = re.search(
+            b"(^P5\s(?:\s*#.*[\r\n])*"
+            b"(\d+)\s(?:\s*#.*[\r\n])*"
+            b"(\d+)\s(?:\s*#.*[\r\n])*"
+            b"(\d+)\s(?:\s*#.*[\r\n]\s)*)", buffer).groups()
+    except AttributeError:
+        raise ValueError("Not a raw PGM file: '%s'" % filename)
+    return np.frombuffer(buffer,
+                            dtype='u1' if int(maxval) < 256 else byteorder+'u2',
+                            count=int(width)*int(height),
+                            offset=len(header)
+                            ).reshape((int(height), int(width)))
+
 def img2int(img):
     zmax=np.max(img)
     norm_img=np.zeros(img.shape,dtype=np.uint8)
