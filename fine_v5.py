@@ -29,8 +29,8 @@ def w_categorical_crossentropy(weights):
 
 def class_weighted_pixelwise_crossentropy(target, output):
     output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
-    with open('class_weights.pickle', 'rb') as weights:
-        
+    #with open('class_weights.pickle', 'rb') as weights:
+    weights = [0.0, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5]
     return -tf.reduce_sum(target * weights * tf.log(output))
 
 
