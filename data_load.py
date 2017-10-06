@@ -107,7 +107,7 @@ def load_data_V2(path,num_img):
 				input_data = bgr_image[np.newaxis, :, :, :] 
 				images.append(input_data)
 				a=prova[1]
-				labels.append(img2int(read_pgm(a[:-4], byteorder='>')))
+				labels.append(np_utils.to_categorical(img2int(read_pgm(a[:-4], byteorder='>'))))
 				if i%8==0:
 					images=np.array(images)
 					labels=np.array(labels)
