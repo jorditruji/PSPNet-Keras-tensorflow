@@ -144,7 +144,7 @@ def plot_metrics(history):
     matplotlib.pyplot.ylabel('loss')
     matplotlib.pyplot.xlabel('epoch')
     matplotlib.pyplot.legend(['train', 'test'], loc='upper left')
-    fig.savefig('metrics_v4.png', dpi=fig.dpi)
+    fig.savefig('depth.png', dpi=fig.dpi)
 
 # Load dataset
 
