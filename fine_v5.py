@@ -253,6 +253,9 @@ predict_labels=model2.predict(x_test)
 scipy.io.savemat('out.mat', mdict={'exon': predict_labels})
 prediction=tf.argmax(predict_labels,1)
 scipy.io.savemat('out2.mat', mdict={'exon': prediction})
+
+#600/600 [==============================] - 2507s - loss: 3.4009 - acc: 0.0433 - val_loss: 15.9909 - val_acc: 0.0213
+
 #for prediction,orig_prediction in zip(predict_labels,data.labels_val):
   #  ind1 = np.argmax(prediction)
    # ind2= np.argmax(orig_prediction)
