@@ -247,7 +247,7 @@ history= model2.fit_generator(
     #      validation_data=(x_test, y_test),
      #     )
 plot_metrics(history)
-model.save_weights('pesos_pesants.h5')
+model2.save_weights('pesos_pesants.h5')
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/test.txt', 1)
 predict_labels=model2.predict(x_test)
 scipy.io.savemat('out.mat', mdict={'exon': predict_labels})
