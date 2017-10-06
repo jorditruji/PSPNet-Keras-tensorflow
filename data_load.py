@@ -9,7 +9,7 @@ import random
 import numpy as np
 from scipy import misc, ndimage, io
 import re
-re.compile('<title>(.*)</title>')
+from itertools import product
 DATA_MEAN = np.array([[[126.92261499, 114.11585906, 99.15394194]]])  # RGB order
 
 
