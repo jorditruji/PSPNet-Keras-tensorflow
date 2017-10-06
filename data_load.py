@@ -108,9 +108,6 @@ def load_data_V2(path,num_img):
 				images.append(input_data)
 				a=prova[1]
 				labels.append(img2int(read_pgm(a[:-4], byteorder='>')))
-
-            	h,w = img.shape
-            	dst_TELEA=img2int(img)
 				if i%8==0:
 					images=np.array(images)
 					labels=np.array(labels)
