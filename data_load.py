@@ -83,6 +83,38 @@ def load_data(path,num_img):
 		yield images, labels
 
 
+def img2int(img):
+    zmax=np.max(img)
+    norm_img=np.zeros(img.shape,dtype=np.uint8)
+    mask=np.zeros(img.shape,dtype=np.uint8)
+    mask_std=np.zeros(img.shape,dtype=np.uint8)
+    cont=0
+    for pos in product(range(h), range(w)):
+    #for idx in img:
+        pixel =  img.item(pos[0],pos[1])
+        if pixel>0:
+            new_pix=np.multiply((((1.0/float(pixel))-(1.0/float(zmax)))/((1.0-(1.0/float(zmax))))),1.0)
+            new_pix2=(float(pixel)/float(zmax))*254.0
+           # print new_pix
+      #  print new_pix
+            norm_img[pos]=255-new_pix2
+            mask[pos]=0
+            mask_std[pos]=255
+        else:
+            norm_img[pos]=0
+            if (pos[1]>20 and pos [0]>20):
+                mask[pos]=255
+                mask_std[pos]=0
+            else:
+                mask[pos]=255
+                mask_std[pos]=0
+        cont+=1
+    #print (np.unique(norm_img))
+
+    dst_TELEA = cv2.inpaint(norm_img,mask,3,cv2.INPAINT_TELEA)
+    dst_TELEA=equalize_hist(dst_TELEA)
+    return dst_TELEA
+
 
 def load_data_V2(path,num_img):
 	while True:
