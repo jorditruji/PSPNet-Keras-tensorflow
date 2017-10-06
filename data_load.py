@@ -82,6 +82,55 @@ def load_data(path,num_img):
 		#y_test = y_test.reshape(100, 307200)
 		yield images, labels
 
+
+
+def load_data_V2(path,num_img):
+	while True:
+		filename = path
+		images =[]
+		labels=[]
+		cont=0
+		i=0
+		with open(filename) as f:
+			head = list(islice(f, 3000))
+		
+			for line in head:
+					#printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
+				i += 1
+				#print (line)
+				
+				prova =line.strip().split(' ')
+				img=read_image(prova[0])
+				float_img = img.astype('float16')
+				centered_image = float_img - DATA_MEAN
+				bgr_image = centered_image[:, :, ::-1]  # RGB => BGR
+				input_data = bgr_image[np.newaxis, :, :, :] 
+				images.append(input_data)
+				a=prova[1]
+				labels.append(img2int(read_pgm(a[:-4], byteorder='>')))
+            	print ("processing image: "+image)
+            	h,w = img.shape
+            	dst_TELEA=img2int(img)
+				if i%8==0:
+					images=np.array(images)
+					labels=np.array(labels)
+					images= np.squeeze(images)
+					yield images, labels
+					images = []
+					labels = []
+
+
+					#labels.append(read_label(prova[1]))
+
+			#print (images.shape)
+			#print (labels.shape)
+			#labels = labels.reshape(num_img, 307200)
+		#y_test = y_test.reshape(100, 307200)
+		#y_train = y_train.reshape(100, 307200)
+		#y_test = y_test.reshape(100, 307200)
+		#yield images, labels
+
+
 def create_mean(path):
 	filename = path
 	images =[]
