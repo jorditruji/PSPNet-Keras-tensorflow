@@ -202,7 +202,7 @@ model2 = Model(inp, out)
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 300)
 
 #x_train= np.squeeze(x_train)
-#x_test = np.squeeze(x_test)
+x_test = np.squeeze(x_test)
 
 #y_train = y_train.reshape(100, 307200)
 #y_test = y_test.reshape(100, 307200)
