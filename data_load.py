@@ -6,6 +6,7 @@ import time
 import shutil
 from keras.utils import np_utils
 import random
+import cv2
 import numpy as np
 from scipy import misc, ndimage, io
 import re
