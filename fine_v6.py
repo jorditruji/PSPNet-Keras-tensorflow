@@ -145,7 +145,7 @@ def plot_metrics(history):
     matplotlib.pyplot.ylabel('loss')
     matplotlib.pyplot.xlabel('epoch')
     matplotlib.pyplot.legend(['train', 'test'], loc='upper left')
-    fig.savefig('/imatge/epresas/depth.png', dpi=fig.dpi)
+    fig.savefig('/imatge/froldan/depth.png', dpi=fig.dpi)
 
 # Load dataset
 
@@ -226,7 +226,7 @@ for layer in model2.layers[:-6]:
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 adam=Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
 
-model2.compile(loss='mean_squared_logarithmic_error', optimizer=adam, metrics=['accuracy'])
+model2.compile(loss='mean_squared_error', optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 
