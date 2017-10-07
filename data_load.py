@@ -156,7 +156,7 @@ def load_data_V2(path,num_img):
 		cont=0
 		i=0
 		with open(filename) as f:
-			head = list(islice(f, 3000))
+			head = list(islice(f, 800))
 		
 			for line in head:
 					#printProgressBar(i + 1, len(head), prefix='Progress:', suffix='Complete', length=50)
@@ -173,7 +173,7 @@ def load_data_V2(path,num_img):
 				a=prova[1]
 		#		print (a[:-4])
 				labels.append(np_utils.to_categorical(img2int(read_pgm(a[:-4],'>'))))
-				if i%3==0:
+				if i%8==0:
 					images=np.array(images)
 					labels=np.array(labels)
 					images= np.squeeze(images)
