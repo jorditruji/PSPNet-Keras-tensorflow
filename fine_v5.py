@@ -233,11 +233,11 @@ model2.summary(line_length=150)
 
 history= model2.fit_generator(
      load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 4),
-      steps_per_epoch = 400,
+      steps_per_epoch = 600,
        nb_epoch = 20,
-        verbose=1)
-          #validation_data=load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 4),
-          #validation_steps=180)
+        verbose=1,
+          validation_data=load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 4),
+          validation_steps=180)
 
 #history=model2.fit(x_train, y_train,
 #          batch_size=8,
