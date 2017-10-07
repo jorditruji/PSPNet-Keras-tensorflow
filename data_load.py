@@ -172,7 +172,7 @@ def load_data_V2(path,num_img):
 				images.append(input_data)
 				a=prova[1]
 		#		print (a[:-4])
-				labels.append(img2int(read_pgm(a[:-4],'>')))
+				labels.append(np_utils.to_categorical(img2int(read_pgm(a[:-4],'>'))))
 				if i%6==0:
 					images=np.array(images)
 					labels=np.array(labels)
