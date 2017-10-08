@@ -170,7 +170,7 @@ new_layer = Lambda(resize_like, arguments={'ref_tensor':tf_resize},name='custom'
 inp = pspnet_ini.model.input
 #out =Dense(256, activation='softmax', name='my_dense')(new_layer)
 #
-out = K.argmax(new_layer,axis=-1)(new_layer)
+out = K.argmax(new_layer.output,axis=-1)(new_layer)
 #out =Flatten()(out)
 
 #out=Lambda(depth_softmax, name='custom2')(new_layer)
