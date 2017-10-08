@@ -227,7 +227,7 @@ history= model2.fit_generator(
     #      validation_data=(x_test, y_test),
      #     )
 
-model2=model.load_weights('pesos_pesants.h5', by_name=True)
+model2=model2.load_weights('pesos_pesants.h5', by_name=True)
 
 plot_metrics(history)
 model2.save_weights('pesos_pesants.h5')
