@@ -175,7 +175,7 @@ out = Reshape((640*480, 256))(out)
 
 #out=Lambda(depth_softmax, name='custom2')(new_layer)
 #out=Reshape((640*480, 16))(out)
-model2 = Model(inp, out)
+model2 = Model(inp, new_layer)
 
 
 
