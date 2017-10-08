@@ -198,7 +198,7 @@ y_train=y_train.reshape((100, 640 * 480 * 16))
 y_test=y_test.reshape((100, 640 * 480 * 16))
 a=0
 '''
-for layer in model2.layers[:-8]:
+for layer in model2.layers[:-6]:
     layer.trainable = False
 
 
@@ -209,7 +209,7 @@ adam=Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
 model2.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
-'''
+
 
 history= model2.fit_generator(
      load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 4),
@@ -218,7 +218,7 @@ history= model2.fit_generator(
         verbose=1,
           validation_data=load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 4),
           validation_steps=180)
-'''
+
 #history=model2.fit(x_train, y_train,
 #          batch_size=8,
  #         epochs=12,
