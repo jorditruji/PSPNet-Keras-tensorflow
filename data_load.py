@@ -178,7 +178,7 @@ def load_data_V2(path,num_img):
 					images=np.array(images)
 					labels=np.array(labels)
 					images= np.squeeze(images)
-					images= np.expand_dims(images,0)
+					#images= np.expand_dims(images,0)
 					yield images, labels
 					images = []
 					labels = []
