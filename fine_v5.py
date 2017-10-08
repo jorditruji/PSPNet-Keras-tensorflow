@@ -231,7 +231,7 @@ history= model2.fit_generator(
 
 #plot_metrics(history)
 model2.save_weights('pesos_pesants.h5')
-x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/test.txt', 1)
+x_test=read_image('/projects/world3d/2017-06-scannet/scene0000_00/frame-000000.color.jpg')
 predict_labels=model2.predict(x_test)
 scipy.io.savemat('out.mat', mdict={'exon': predict_labels})
 prediction=tf.argmax(predict_labels,1)
