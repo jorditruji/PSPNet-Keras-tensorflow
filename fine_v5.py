@@ -176,26 +176,6 @@ out = Reshape((640*480, 256))(out)
 #out=Lambda(depth_softmax, name='custom2')(new_layer)
 #out=Reshape((640*480, 16))(out)
 model2 = Model(inp, out)
-'''
-out =Dense(16, activation='softmax', name='my_dense')(new_layer)
-
-
-#{"name": "conv6", "config": {"filters": 16, "use_bias": true, "name": "conv6", "bias_regularizer": null, "strides": [1, 1], "data_format": "", "activation": "linear", "trainable": true, "kernel_constraint": null, "activity_regularizer": null, "padding": "valid", "bias_initializer": {"config": {}, "class_name": "Zeros"}, "kernel_initializer": {"config": {"seed": null, "distribution": "uniform", "scale": 1.0, "mode": "fan_avg"}, "class_name": "VarianceScaling"}, "bias_constraint": null, "kernel_size": [1, 1], "kernel_regularizer": null, "dilation_rate": [1, 1]}, "class_name": "Conv2D"
-last_layer = pspnet_ini.model.layers[-1].output
-#new_layer = Flatten()(last_layer)
-
-new_layer = Dense((640, 480), activation='relu', name='fc2')(new_layer)
-
-out =Dense(16, activation='softmax', name='my_dense')(new_layer)
-
-
-#out = new_layer(pspnet_ini.model.layers[-1].output)
-
-inp = pspnet_ini.model.input
-model2 = Model(inp, out)
-
-#model2.summary(line_length=150)
-'''
 
 
 
@@ -229,7 +209,7 @@ adam=Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
 model2.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
-
+'''
 
 history= model2.fit_generator(
      load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 4),
@@ -238,7 +218,7 @@ history= model2.fit_generator(
         verbose=1,
           validation_data=load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 4),
           validation_steps=180)
-
+'''
 #history=model2.fit(x_train, y_train,
 #          batch_size=8,
  #         epochs=12,
@@ -246,6 +226,9 @@ history= model2.fit_generator(
    #       verbose=1,
     #      validation_data=(x_test, y_test),
      #     )
+
+model2=model.load_weights('pesos_pesants.h5', by_name=True)
+
 plot_metrics(history)
 model2.save_weights('pesos_pesants.h5')
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/test.txt', 1)

@@ -9,20 +9,34 @@ from keras.utils import np_utils
 import numpy as np
 from scipy import misc, ndimage
 from keras import backend as K
-from keras.models import model_from_json
+from keras.models import model_from_json, load_model
 import tensorflow as tf
 import layers_builder as layers
 import utils
 import matplotlib
 
-
+def w_categorical_crossentropy(weights):
+    def loss(y_true, y_pred):
+        nb_cl = len(weights)
+        final_mask = K.zeros_like(y_pred[:, 0])
+        y_pred_max = K.max(y_pred, axis=1, keepdims=True)
+        y_pred_max_mat = K.equal(y_pred, y_pred_max)
+        for c_p, c_t in product(range(nb_cl), range(nb_cl)):
+            final_mask += (weights[c_t, c_p] * y_pred_max_mat[:, c_p] * y_true[:, c_t])
+        return K.categorical_crossentropy(y_pred, y_true) * final_mask
+    return loss
 
 def class_weighted_pixelwise_crossentropy(target, output):
-     output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
+    output = tf.clip_by_value(output, 10e-8, 1.-10e-8)
+    with open('class_weights.pickle', 'rb') as weights:
+        
+    return -tf.reduce_sum(target * weights * tf.log(output))
 
-     #with open('class_weights.pickle', 'rb') as f:
-     weight = [0.0, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5]
-     return -tf.reduce_sum(target * weight * tf.log(output))
+
+
+
+
+     #weight = [0.0, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5]
 
 # Force matplotlib to not use any Xwindows backend.
 matplotlib.use('Agg')
