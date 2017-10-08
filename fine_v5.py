@@ -229,7 +229,7 @@ history= model2.fit_generator(
 
 model2=model2.load_weights('pesos_pesants.h5', by_name=True)
 
-plot_metrics(history)
+#plot_metrics(history)
 model2.save_weights('pesos_pesants.h5')
 x_test, y_test = load_data('/imatge/jmorera/PSPNet-Keras-tensorflow/test.txt', 1)
 predict_labels=model2.predict(x_test)
