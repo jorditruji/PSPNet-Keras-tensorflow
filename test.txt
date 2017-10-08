@@ -1,0 +1,1 @@
+/projects/world3d/2017-06-scannet/scene0405_00/frame-001850.color.jpg /projects/world3d/2017-06-scannet/scene0405_00/frame-001850.depth.pgm.mat
