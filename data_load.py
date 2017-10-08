@@ -174,7 +174,7 @@ def load_data_V2(path,num_img):
 		#		print (a[:-4])
 				labels.append(img2int(read_pgm(a[:-4],'>')))
 
-				if i%1==0:
+				if i%3==0:
 					images=np.array(images)
 					labels=np.array(labels)
 					images= np.squeeze(images)
