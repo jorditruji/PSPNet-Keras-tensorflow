@@ -37,7 +37,8 @@ def class_weighted_pixelwise_crossentropy(target, output):
 
 
 
-
+def mean_squared_error(y_true, y_pred):
+  return K.mean(K.square(np.argmax(y_pred) - y_true), axis=-1)
 
      #weight = [0.0, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5]
 
@@ -207,7 +208,7 @@ for layer in model2.layers[:-6]:
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 adam=Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
 
-model2.compile(loss='mean_squared_error', optimizer=adam, metrics=['accuracy'])
+model2.compile(loss=mean_squared_error, optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 
