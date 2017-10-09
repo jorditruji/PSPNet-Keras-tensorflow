@@ -116,9 +116,9 @@ def read_pgm(filename, byteorder='>'):
 
 def img2int(img):
     zmax=np.max(img)
-    norm_img=np.zeros(img.shape,dtype=np.uint8)
+    norm_img=np.zeros(img.shape,dtype=np.float32)
     mask=np.zeros(img.shape,dtype=np.uint8)
-    mask_std=np.zeros(img.shape,dtype=np.uint8)
+    mask_std=np.zeros(img.shape,dtype=np.float32)
     cont=0
     h,w = img.shape
     for pos in product(range(h), range(w)):
