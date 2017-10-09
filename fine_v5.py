@@ -38,7 +38,9 @@ def class_weighted_pixelwise_crossentropy(target, output):
 
 
 def mean_squared_error(y_true, y_pred):
-  return K.mean(K.square(np.argmax(y_pred) - y_true), axis=-1)
+  
+  return K.mean(K.square(np.argmax(y_pred,axis=-1) - y_true), axis=-1)
+
 
      #weight = [0.0, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5]
 
