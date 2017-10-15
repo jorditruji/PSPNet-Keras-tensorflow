@@ -146,6 +146,7 @@ def img2int(img):
     #print (np.unique(norm_img))
 
     dst_TELEA = cv2.inpaint(norm_img,mask,3,cv2.INPAINT_TELEA)
+    print (dst_TELEA.shape)
     dst_TELEA=equalize_hist(dst_TELEA)
     print (dst_TELEA.dtype)
     return dst_TELEA
