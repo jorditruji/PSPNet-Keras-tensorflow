@@ -33,13 +33,9 @@ def class_weighted_pixelwise_crossentropy(target, output):
     #with open('class_weights.pickle', 'rb') as weights:
     weights = [0.0, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5]
     return -tf.reduce_sum(target * weights * tf.log(output))
-    return K.categorical_crossentropy(np.argmax(y_pred), y_true)
 
 
 
-def mean_squared_error(y_true, y_pred):
-  print (K.argmax(y_pred,axis=-1))
-  return K.mean(K.square(y_pred - y_true), axis=-1)
 
 
      #weight = [0.0, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5, 1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5 ,1e-5]
@@ -174,11 +170,11 @@ new_layer = Lambda(resize_like, arguments={'ref_tensor':tf_resize},name='custom'
 inp = pspnet_ini.model.input
 #out =Dense(256, activation='softmax', name='my_dense')(new_layer)
 #
-#
-#out =Flatten()(new_layer)
-#out = K.argmax(out,axis=-1)(out)
+out = K.argmax((3))(new_layer)
+#out =Flatten()(out)
+
 #out=Lambda(depth_softmax, name='custom2')(new_layer)
-out=Reshape((640*480, 256))(new_layer)
+#out=Reshape((640*480, 16))(out)
 model2 = Model(inp, out)
 
 
@@ -210,7 +206,7 @@ for layer in model2.layers[:-6]:
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 adam=Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
 
-model2.compile(loss=mean_squared_error, optimizer=adam, metrics=['accuracy'])
+model2.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 

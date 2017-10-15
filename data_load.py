@@ -37,15 +37,13 @@ def printProgressBar(iteration, total, prefix = '', suffix = '', decimals = 1, l
 
 def read_image(name):
 	img=misc.imread(name)
-	img_Resize= misc.imresize(img, (480, 640))
-
+	img_Resize= misc.imresize(img, (640, 480))
 
 	return img_Resize
 
 def read_label(name):
 	label=io.loadmat(name)[name[:-4]]
 	label=np.transpose(label.astype('uint8'))
-	print (label.shape)
 	label = label.ravel()
 	label = np_utils.to_categorical(label, 16)
 	#print (label.shape)
@@ -118,9 +116,9 @@ def read_pgm(filename, byteorder='>'):
 
 def img2int(img):
     zmax=np.max(img)
-    norm_img=np.zeros(img.shape,dtype=np.float32)
+    norm_img=np.zeros(img.shape,dtype=np.uint8)
     mask=np.zeros(img.shape,dtype=np.uint8)
-    mask_std=np.zeros(img.shape,dtype=np.float32)
+    mask_std=np.zeros(img.shape,dtype=np.uint8)
     cont=0
     h,w = img.shape
     for pos in product(range(h), range(w)):
@@ -146,7 +144,7 @@ def img2int(img):
     #print (np.unique(norm_img))
 
     dst_TELEA = cv2.inpaint(norm_img,mask,3,cv2.INPAINT_TELEA)
-
+    dst_TELEA=equalize_hist(dst_TELEA)
     return dst_TELEA
 
 
@@ -176,11 +174,10 @@ def load_data_V2(path,num_img):
 		#		print (a[:-4])
 				labels.append(img2int(read_pgm(a[:-4],'>')))
 
-				if i%num_img==0:
+				if i%3==0:
 					images=np.array(images)
 					labels=np.array(labels)
 					images= np.squeeze(images)
-					labels = labels.reshape(num_img, 307200)
 					#images= np.expand_dims(images,0)
 					yield images, labels
 					images = []
