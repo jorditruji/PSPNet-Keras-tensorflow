@@ -37,13 +37,15 @@ def printProgressBar(iteration, total, prefix = '', suffix = '', decimals = 1, l
 
 def read_image(name):
 	img=misc.imread(name)
-	img_Resize= misc.imresize(img, (640, 480))
+	img_Resize= misc.imresize(img, (480, 640))
+	
 
 	return img_Resize
 
 def read_label(name):
 	label=io.loadmat(name)[name[:-4]]
 	label=np.transpose(label.astype('uint8'))
+	print (label.shape)
 	label = label.ravel()
 	label = np_utils.to_categorical(label, 16)
 	#print (label.shape)
