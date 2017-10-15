@@ -38,7 +38,7 @@ def printProgressBar(iteration, total, prefix = '', suffix = '', decimals = 1, l
 def read_image(name):
 	img=misc.imread(name)
 	img_Resize= misc.imresize(img, (480, 640))
-	
+
 
 	return img_Resize
 
@@ -177,7 +177,7 @@ def load_data_V2(path,num_img):
 		#		print (a[:-4])
 				labels.append(img2int(read_pgm(a[:-4],'>')))
 
-				if i%3==0:
+				if i%num_img==0:
 					images=np.array(images)
 					labels=np.array(labels)
 					images= np.squeeze(images)

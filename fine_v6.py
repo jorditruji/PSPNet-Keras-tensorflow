@@ -226,17 +226,17 @@ for layer in model2.layers[:-6]:
 sgd = SGD(lr=0.001, momentum=0, decay=0.002, nesterov=True)
 adam=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
 
-model2.compile(loss='mean_squared_error', optimizer=adam, metrics=['accuracy'])
+model2.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 model2.summary(line_length=150)
 
 
 history= model2.fit_generator(
-     load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 4),
+     load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/train.txt', 6),
       steps_per_epoch = 800,
        nb_epoch = 20,
         verbose=1,
-          validation_data=load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 4),
+          validation_data=load_data_V2('/imatge/jmorera/PSPNet-Keras-tensorflow/val.txt', 6),
           validation_steps=200)
 
 #history=model2.fit(x_train, y_train,
