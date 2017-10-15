@@ -149,7 +149,7 @@ def plot_metrics(history):
 
 # Load dataset
 
-pspnet_ini = PSPNet50(nb_classes=150, input_shape=(640, 480),
+pspnet_ini = PSPNet50(nb_classes=150, input_shape=(480, 640),
                               weights='pspnet50_ade20k')
 
 
