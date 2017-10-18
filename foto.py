@@ -8,16 +8,11 @@ import argparse
 from keras.utils import np_utils
 import numpy as np
 from scipy import misc, ndimage
-from keras import backend as K
-from keras.models import model_from_json
-import tensorflow as tf
-import layers_builder as layers
+
 import utils
 import matplotlib
 import cv2
-from keras.layers import Activation, Dense, Flatten, Conv2D, Lambda, Input, Reshape
-from keras.models import Model,Sequential
-from pspnet import PSPNet50
+
 from data_load import *
 
 
