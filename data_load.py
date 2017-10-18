@@ -42,10 +42,10 @@ def read_image(name):
 	return img_Resize
 
 def read_label(name):
-	label=io.loadmat(name)[name[:-4]]
+	label=io.loadmat(name)[name]
 	label=np.transpose(label.astype('uint8'))
-	label = label.ravel()
-	label = np_utils.to_categorical(label, 16)
+	#label = label.ravel()
+	#label = np_utils.to_categorical(label, 16)
 	#print (label.shape)
 	return label
 
