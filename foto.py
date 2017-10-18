@@ -15,5 +15,5 @@ import cv2
 from data_load import *
 
 
-foto = read_label('/projects/world3d/2017-06-scannet/scene0405_00/frame-001850.depth.pgm.mat')
+foto = read_label('/projects/world3d/2017-06-scannet/scene0000_00/frame-000000.depth.pgm.mat')
 misc.imsave('outfile.jpg', foto)
